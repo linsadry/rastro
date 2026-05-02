@@ -1,5 +1,5 @@
 import{useState}from'react'
-import{C,createTrip}from'../lib/utils'
+import{C,createTrip,showToast}from'../lib/utils'
 import IMG from'../lib/images'
 import Icon from'../components/Icon'
 const CV=['cliffs','island','abstract','beach','fish','balloon','lighthouse','objects','map']
@@ -13,7 +13,16 @@ const[cover,setCover]=useState('cliffs')
 const[budget,setBudget]=useState('')
 const[participants,setParticipants]=useState('Você')
 const[loading,setLoading]=useState(false)
-const go=async()=>{if(!name.trim())return;setLoading(true);try{await createTrip({name:name.trim(),location:location.trim(),dates:dates.trim(),dateStart,dateEnd,cover,budget:parseFloat(budget)||0,participants:participants.split(',').map(p=>p.trim()).filter(Boolean)});onCreated()}catch(e){console.error(e)}finally{setLoading(false)}}
+const[err,setErr]=useState('')
+const go=async()=>{
+if(!name.trim()){setErr('Digite o nome da viagem');return}
+setLoading(true);setErr('')
+try{
+await createTrip({name:name.trim(),location:location.trim(),dates:dates.trim(),dateStart:dateStart||null,dateEnd:dateEnd||null,cover,budget:parseFloat(budget)||0,participants:participants.split(',').map(p=>p.trim()).filter(Boolean)})
+showToast('Viagem criada!')
+onCreated()
+}catch(e){console.error(e);setErr('Erro ao criar: '+e.message)}
+finally{setLoading(false)}}
 const inp={width:'100%',padding:'12px 14px',borderRadius:12,border:`1.5px solid ${C.divider}`,fontSize:15,background:'#fff',color:C.textDark,outline:'none'}
 const lbl={fontSize:12,fontWeight:700,color:C.textMid,marginBottom:6,letterSpacing:1,textTransform:'uppercase'}
 return(<div style={{minHeight:'100vh',background:C.paper}}>
@@ -26,13 +35,14 @@ return(<div style={{minHeight:'100vh',background:C.paper}}>
 </div></div>
 <div><div style={lbl}>Nome *</div><input style={inp} value={name} onChange={e=>setName(e.target.value)} placeholder="Ex: Portugal 2024"/></div>
 <div><div style={lbl}>Destino</div><input style={inp} value={location} onChange={e=>setLocation(e.target.value)} placeholder="Ex: Lisboa, Portugal"/></div>
-<div><div style={lbl}>Período (texto livre)</div><input style={inp} value={dates} onChange={e=>setDates(e.target.value)} placeholder="Ex: Jul 2024 · 10 dias"/></div>
+<div><div style={lbl}>Período</div><input style={inp} value={dates} onChange={e=>setDates(e.target.value)} placeholder="Ex: Jul 2024 · 10 dias"/></div>
 <div><div style={lbl}>Participantes</div><input style={inp} value={participants} onChange={e=>setParticipants(e.target.value)} placeholder="Separe por vírgula"/></div>
 <div><div style={lbl}>Orçamento R$</div><input style={inp} type="number" value={budget} onChange={e=>setBudget(e.target.value)} placeholder="0,00"/></div>
 <div style={{display:'flex',gap:12}}>
-<div style={{flex:1}}><div style={lbl}>Data início</div><input style={inp} type="date" value={dateStart} onChange={e=>setDateStart(e.target.value)}/></div>
-<div style={{flex:1}}><div style={lbl}>Data fim</div><input style={inp} type="date" value={dateEnd} onChange={e=>setDateEnd(e.target.value)}/></div>
+<div style={{flex:1}}><div style={lbl}>Início</div><input style={inp} type="date" value={dateStart} onChange={e=>setDateStart(e.target.value)}/></div>
+<div style={{flex:1}}><div style={lbl}>Fim</div><input style={inp} type="date" value={dateEnd} onChange={e=>setDateEnd(e.target.value)}/></div>
 </div>
-<button onClick={go} disabled={loading||!name.trim()} style={{padding:'16px',borderRadius:16,background:name.trim()?C.terracotta:C.divider,color:name.trim()?'#fff':C.textLight,border:'none',fontSize:16,fontWeight:700,cursor:'pointer'}}>
+{err&&<div style={{color:C.terracotta,fontSize:13,fontWeight:600}}>{err}</div>}
+<button onClick={go} disabled={loading} style={{padding:'16px',borderRadius:16,background:C.terracotta,color:'#fff',border:'none',fontSize:16,fontWeight:700,cursor:'pointer'}}>
 {loading?'Criando...':'Criar viagem'}</button>
 </div></div>)}
