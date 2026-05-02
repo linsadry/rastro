@@ -28,4 +28,5 @@ export default function Icon({ name, size = 20, color = 'currentColor' }) {
     'info': <svg style={s} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>,
   }
 
-  return icons[name] || <s
+  return icons[name] || <svg style={s} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8"><circle cx="12" cy="12" r="10"/></svg>
+}
