@@ -88,7 +88,7 @@ export default function App() {
       <nav style={{
         display: 'flex', background: '#fff',
         borderTop: `1px solid ${C.divider}`,
-        paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+        paddingBottom: 'max(8px, env(safe-area-inset-bottom, 8px))',
         flexShrink: 0,
       }}>
         {NAV.map(item => {
