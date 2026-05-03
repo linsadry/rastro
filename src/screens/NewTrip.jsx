@@ -27,3 +27,29 @@ return(<div style={{minHeight:'100dvh',background:C.paper}}>
 <div style={{padding:'56px 20px 20px',background:C.olive,display:'flex',alignItems:'center',gap:12}}>
 <button onClick={onBack} style={{background:'none',border:'none',cursor:'pointer'}}><Icon name="arrow-left" size={22} color="#fff"/></button>
 <div style={{fontFamily:'Playfair Display',fontSize:22,color:'#fff',fontWeight:700}}>Nova viagem</div></div>
+<div style={{padding:'24px 20px 100px',display:'flex',flexDirection:'column',gap:16}}>
+<div><div style={lbl}>Capa</div><div style={{display:'flex',gap:10,overflowX:'auto'}}>
+{CV.map(c=><div key={c} onClick={()=>set('cover',c)} style={{width:72,height:72,borderRadius:14,overflow:'hidden',flexShrink:0,cursor:'pointer',border:f.cover===c?`3px solid ${C.terracotta}`:'3px solid transparent'}}><img src={IMG[c]} alt={c} style={{width:'100%',height:'100%',objectFit:'cover'}}/></div>)}</div></div>
+<div><div style={lbl}>Nome *</div><input style={inp} value={f.name} onChange={e=>set('name',e.target.value)} placeholder="Ex: Eurotrip 2025"/></div>
+<div><div style={lbl}>Destino principal</div><input style={inp} value={f.location} onChange={e=>set('location',e.target.value)} placeholder="Ex: Lisboa, Portugal"/></div>
+<div><div style={lbl}>Cidades e paradas (opcional)</div>
+<div style={{display:'flex',gap:8,marginBottom:8}}>
+<input style={{...inp,flex:1}} value={destInput} onChange={e=>setDestInput(e.target.value)} onKeyDown={e=>e.key==='Enter'&&addDest()} placeholder="Ex: Porto"/>
+<button onClick={addDest} style={{background:C.terracotta,border:'none',borderRadius:12,width:44,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center'}}><Icon name="plus" size={18} color="#fff"/></button>
+</div>
+{dests.length>0&&<div style={{display:'flex',flexWrap:'wrap',gap:8}}>
+{dests.map((d,i)=><div key={i} style={{background:C.sandPale,borderRadius:20,padding:'6px 12px',fontSize:13,color:C.olive,display:'flex',alignItems:'center',gap:6}}>
+{d}<button onClick={()=>remDest(i)} style={{background:'none',border:'none',cursor:'pointer',padding:0,display:'flex'}}><Icon name="x" size={12} color={C.textLight}/></button>
+</div>)}</div>}
+</div>
+<div style={{display:'flex',gap:12}}>
+<div style={{flex:1}}><div style={lbl}>Inicio</div><input style={inp} type="date" value={f.ds} onChange={e=>set('ds',e.target.value)}/></div>
+<div style={{flex:1}}><div style={lbl}>Fim</div><input style={inp} type="date" value={f.de} onChange={e=>set('de',e.target.value)}/></div>
+</div>
+<div><div style={lbl}>Participantes</div><input style={inp} value={f.parts} onChange={e=>set('parts',e.target.value)} placeholder="Virgula"/></div>
+<div><div style={lbl}>Orcamento R$</div><input style={inp} type="number" value={f.budget} onChange={e=>set('budget',e.target.value)} placeholder="0,00"/></div>
+{err&&<div style={{color:C.terracotta,fontSize:13,fontWeight:600}}>{err}</div>}
+<button onClick={go} disabled={loading} style={{padding:'16px',borderRadius:16,background:C.terracotta,color:'#fff',border:'none',fontSize:16,fontWeight:700,cursor:'pointer'}}>{loading?'Criando...':'Criar viagem'}</button>
+</div></div>)}
+
+  
