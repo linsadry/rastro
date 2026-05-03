@@ -27,7 +27,7 @@ return(<div style={{minHeight:'100dvh',background:C.paper}}>
 <div style={{padding:'56px 20px 20px',background:C.olive,display:'flex',alignItems:'center',gap:12}}>
 <button onClick={onBack} style={{background:'none',border:'none',cursor:'pointer'}}><Icon name="arrow-left" size={22} color="#fff"/></button>
 <div style={{fontFamily:'Playfair Display',fontSize:22,color:'#fff',fontWeight:700}}>Nova viagem</div></div>
-<div style={{padding:'24px 20px 100px',display:'flex',flexDirection:'column',gap:16}}>
+<div style={{padding:'24px 20px 140px',display:'flex',flexDirection:'column',gap:16}}>
 <div><div style={lbl}>Capa</div><div style={{display:'flex',gap:10,overflowX:'auto'}}>
 {CV.map(c=><div key={c} onClick={()=>set('cover',c)} style={{width:72,height:72,borderRadius:14,overflow:'hidden',flexShrink:0,cursor:'pointer',border:f.cover===c?`3px solid ${C.terracotta}`:'3px solid transparent'}}><img src={IMG[c]} alt={c} style={{width:'100%',height:'100%',objectFit:'cover'}}/></div>)}</div></div>
 <div><div style={lbl}>Nome *</div><input style={inp} value={f.name} onChange={e=>set('name',e.target.value)} placeholder="Ex: Eurotrip 2025"/></div>
