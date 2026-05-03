@@ -77,7 +77,7 @@ export default function App() {
   const openTrip = (t) => { setActiveTrip(t); setScreen('trip') }
 
   return (
-    <div style={{ height: height: '100dvh', display: 'flex', flexDirection: 'column', background: C.paper }}>
+    <div style={{ height: '100dvh', display: 'flex', flexDirection: 'column', background: C.paper }}>
       <div style={{ flex: 1, overflowY: 'auto', position: 'relative' }}>
         {nav === 'home'     && <Home trips={trips} onNewTrip={() => setScreen('newtrip')} onOpenTrip={openTrip} onRefresh={loadTrips}/>}
         {nav === 'calendar' && <Calendar trips={trips} onOpenTrip={openTrip}/>}
