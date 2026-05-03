@@ -115,7 +115,6 @@ with_whom:data.withWhom,date:data.date||null,note:data.note||null,
 }).select().single()
 if(error)throw error
 return exp}
-}
 
 export async function deleteExpense(id) {
   const { error } = await sb.from('expenses').delete().eq('id', id)
