@@ -107,20 +107,14 @@ export async function deleteTrip(id) {
   if (error) throw error
 }
 
-export async function addExpense(tripId, data) {
-  const { data: exp, error } = await sb.from('expenses').insert({
-    trip_id: tripId,
-    description: data.description,
-    amount: data.amount,
-    category: data.category,
-    payment: data.payment,
-    paid_by: data.paidBy,
-    with_whom: data.withWhom,
-    date: data.date || null,
-    note: data.note || null,
-  }).select().single()
-  if (error) throw error
-  return exp
+export async function addExpense(tripId,data){
+const{data:exp,error}=await sb.from('expenses').insert({
+trip_id:tripId,description:data.description,amount:data.amount,
+category:data.category,payment:data.payment,paid_by:data.paidBy,
+with_whom:data.withWhom,date:data.date||null,note:data.note||null,
+}).select().single()
+if(error)throw error
+return exp}
 }
 
 export async function deleteExpense(id) {
