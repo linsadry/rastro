@@ -53,7 +53,6 @@ export async function fetchAllTrips() {
     coverCustom: t.cover_custom || null,
     budget: parseFloat(t.budget) || 0,
     participants: t.participants || ['Você'],
-    destinations:data.destinations||[],
     mapImg: t.map_img || null,
     destinations: t.destinations || [],
     mapPoints: (mapPoints || [])
