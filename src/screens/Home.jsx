@@ -33,8 +33,9 @@ export default function Home({ trips, onNewTrip, onOpenTrip, onRefresh }) {
         <div style={{ display: 'flex', gap: 12, marginBottom: 24 }}>
           {[
             { label: 'Viagens', value: trips.length },
-            { label: 'Países', value: new Set(trips.map(t => t.location?.split(',').pop()?.trim()).filter(Boolean)).size },
-            { label: 'Gastos', value: formatCurrency(trips.reduce((s, t) => s + (t.expenses?.reduce((a, e) => a + e.amount, 0) || 0), 0)) },
+{ label: 'Destinos', value: new Set(trips.map(t=>t.location?.trim()).filter(Boolean)).size },
+{ label: 'Gastos', value: formatCurrency(trips.reduce((s,t)=>s+(t.expenses?.reduce((a,e)=>a+e.amount,0)||0),0)) },
+
           ].map((stat, i) => (
             <div key={i} style={{ flex: 1, background: '#fff', borderRadius: 14, padding: '12px 8px', textAlign: 'center', boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}>
               <div style={{ fontSize: 16, fontWeight: 700, color: C.olive }}>{stat.value}</div>
