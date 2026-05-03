@@ -55,6 +55,7 @@ export async function fetchAllTrips() {
     participants: t.participants || ['Você'],
     destinations:data.destinations||[],
     mapImg: t.map_img || null,
+    destinations: t.destinations || [],
     mapPoints: (mapPoints || [])
       .filter(p => p.trip_id === t.id)
       .map(p => ({ id: p.id, label: p.label, x: p.x, y: p.y, date: p.date || '' })),
