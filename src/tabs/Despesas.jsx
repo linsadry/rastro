@@ -57,7 +57,7 @@ return(<div style={{padding:'20px 20px 40px'}}>
 <div style={{fontSize:13,fontWeight:700,color:C.textMid}}>{editId?'Editar despesa':'Nova despesa'}</div>
 <input style={inp} placeholder="Descricao *" value={desc} onChange={e=>setDesc(e.target.value)}/>
 <input style={inp} placeholder="Valor R$ *" type="number" value={amount} onChange={e=>setAmount(e.target.value)}/>
-<input style={inp} type="date" value={date} onChange={e=>setDate(e.target.value)}/>
+<input style={inp} type="datetime-local" value={date} onChange={e=>setDate(e.target.value)}/>
 <select style={inp} value={cat} onChange={e=>setCat(e.target.value)}>{CATS.map(c=><option key={c}>{c}</option>)}</select>
 <select style={inp} value={pay} onChange={e=>setPay(e.target.value)}>{PAYS.map(p=><option key={p}>{p}</option>)}</select>
 <input style={inp} placeholder="Observacao (opcional)" value={note} onChange={e=>setNote(e.target.value)}/>
@@ -91,7 +91,7 @@ return(<div style={{padding:'20px 20px 40px'}}>
 <div style={{fontSize:24}}>{categoryIcon(e.category)}</div>
 <div style={{flex:1}}>
 <div style={{fontSize:14,fontWeight:600,color:C.textDark}}>{e.description}</div>
-<div style={{fontSize:11,color:C.textLight,marginTop:2}}>{e.category} · {e.payment} · {e.paidBy}{e.date?` · ${new Date(e.date+'T12:00:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'short'})}`:''}</div>
+<div style={{fontSize:11,color:C.textLight,marginTop:2}}>{e.category} · {e.payment} · {e.paidBy}{e.date?` · ${new Date(e.date).toLocaleDateString('pt-BR',{day:'2-digit',month:'short'})}`:''}</div>
 {parts.length>1&&e.withWhom?.length>0&&<div style={{fontSize:11,color:C.ocean,marginTop:2}}>div {e.withWhom.join(', ')} · {formatCurrency(e.amount/e.withWhom.length)} cada</div>}
 {e.note&&<div style={{fontSize:12,color:C.textMid,marginTop:4,fontStyle:'italic'}}>obs: {e.note}</div>}
 </div>
