@@ -66,6 +66,18 @@ export default function Resumo({ trip }) {
           </div>
         </div>
       )}
+      
+      {trip.destinations?.length>0&&(
+<div style={{background:'#fff',borderRadius:16,padding:'16px 20px',boxShadow:'0 1px 4px rgba(0,0,0,0.06)'}}>
+<div style={{fontSize:12,color:C.textLight,marginBottom:10,fontWeight:700,letterSpacing:1,textTransform:'uppercase'}}>Paradas</div>
+<div style={{display:'flex',flexWrap:'wrap',gap:8}}>
+{trip.destinations.map((d,i)=>(
+<div key={i} style={{background:C.sandPale,borderRadius:20,padding:'6px 14px',fontSize:13,color:C.olive,fontWeight:600}}>{d}</div>
+))}
+</div>
+</div>
+)}
+
 
       {/* Donut */}
       {catData.length > 0 && (
