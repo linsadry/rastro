@@ -90,8 +90,6 @@ participants:data.participants||['Você'],
 if(error)throw error
 return trip}
 
-}
-
 export async function updateTrip(id, data) {
   const { error } = await sb.from('trips').update({
     name: data.name,
