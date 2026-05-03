@@ -76,23 +76,20 @@ export async function fetchAllTrips() {
   }))
 }
 
-export async function createTrip(data) {
-  const { data: trip, error } = await sb
-    .from('trips')
-    .insert({
-      name: data.name,
-      location: data.location,
-      dates: data.dates,
-      date_start: data.dateStart || null,
-      date_end: data.dateEnd || null,
-      cover: data.cover || 'cliffs',
-      budget: data.budget || 0,
-      participants: data.participants || ['Você'],
-    })
-    .select()
-    .single()
-  if (error) throw error
-  return trip
+export async function createTrip(data){
+const{data:trip,error}=await sb.from('trips').insert({
+name:data.name,
+location:data.location,
+dates:data.dates,
+date_start:data.dateStart||null,
+date_end:data.dateEnd||null,
+cover:data.cover||'cliffs',
+budget:data.budget||0,
+participants:data.participants||['Você'],
+}).select().single()
+if(error)throw error
+return trip}
+
 }
 
 export async function updateTrip(id, data) {
