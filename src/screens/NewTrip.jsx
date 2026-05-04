@@ -49,7 +49,7 @@ return(<div style={{minHeight:'100dvh',background:C.paper,paddingBottom:'env(saf
 <div><div style={lbl}>Participantes</div><input style={inp} value={f.parts} onChange={e=>set('parts',e.target.value)} placeholder="Virgula"/></div>
 <div><div style={lbl}>Orcamento R$</div><input style={inp} type="number" value={f.budget} onChange={e=>set('budget',e.target.value)} placeholder="0,00"/></div>
 {err&&<div style={{color:C.terracotta,fontSize:13,fontWeight:600}}>{err}</div>}
-<button onClick={go} disabled={loading} style={{padding:'16px',borderRadius:16,background:C.terracotta,color:'#fff',border:'none',fontSize:16,fontWeight:700,cursor:'pointer'}}>{loading?'Criando...':'Criar viagem'}</button>
-</div></div>)}
-
-  
+</div></div>
+<div style={{position:'fixed',bottom:0,left:0,right:0,padding:'16px 20px',paddingBottom:'max(16px,env(safe-area-inset-bottom))',background:C.paper,borderTop:`1px solid ${C.divider}`}}>
+<button onClick={go} disabled={loading} style={{width:'100%',padding:'16px',borderRadius:16,background:C.terracotta,color:'#fff',border:'none',fontSize:16,fontWeight:700,cursor:'pointer'}}>{loading?'Criando...':'Criar viagem'}</button>
+</div>)}
