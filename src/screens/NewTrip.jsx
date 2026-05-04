@@ -23,7 +23,7 @@ showToast('Viagem criada!');onCreated()
 }catch(e){setErr('Erro: '+e.message)}finally{setLoading(false)}}
 const inp={width:'100%',padding:'12px 14px',borderRadius:12,border:`1.5px solid ${C.divider}`,fontSize:15,background:'#fff',color:C.textDark,outline:'none'}
 const lbl={fontSize:12,fontWeight:700,color:C.textMid,marginBottom:6,letterSpacing:1,textTransform:'uppercase'}
-return(<div style={{minHeight:'100dvh',background:C.paper,paddingBottom:'env(safe-area-inset-bottom,20px)'}}>
+return(<div style={{height:'100dvh',background:C.paper,display:'flex',flexDirection:'column'}}>
 <div style={{padding:'56px 20px 20px',background:C.olive,display:'flex',alignItems:'center',gap:12}}>
 <button onClick={onBack} style={{background:'none',border:'none',cursor:'pointer'}}><Icon name="arrow-left" size={22} color="#fff"/></button>
 <div style={{fontFamily:'Playfair Display',fontSize:22,color:'#fff',fontWeight:700}}>Nova viagem</div></div>
