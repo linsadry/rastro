@@ -27,7 +27,7 @@ return(<div style={{height:'100dvh',background:C.paper,display:'flex',flexDirect
 <div style={{padding:'56px 20px 20px',background:C.olive,display:'flex',alignItems:'center',gap:12}}>
 <button onClick={onBack} style={{background:'none',border:'none',cursor:'pointer'}}><Icon name="arrow-left" size={22} color="#fff"/></button>
 <div style={{fontFamily:'Playfair Display',fontSize:22,color:'#fff',fontWeight:700}}>Nova viagem</div></div>
-<div style={{padding:'24px 20px 220px',display:'flex',flexDirection:'column',gap:16}}>
+<div style={{flex:1,overflowY:'auto',padding:'24px 20px 20px',display:'flex',flexDirection:'column',gap:16}}>
   <div><div style={lbl}>Capa</div><div style={{display:'flex',gap:10,overflowX:'auto'}}>
 {CV.map(c=><div key={c} onClick={()=>set('cover',c)} style={{width:72,height:72,borderRadius:14,overflow:'hidden',flexShrink:0,cursor:'pointer',border:f.cover===c?`3px solid ${C.terracotta}`:'3px solid transparent'}}><img src={IMG[c]} alt={c} style={{width:'100%',height:'100%',objectFit:'cover'}}/></div>)}</div></div>
 <div><div style={lbl}>Nome *</div><input style={inp} value={f.name} onChange={e=>set('name',e.target.value)} placeholder="Ex: Eurotrip 2025"/></div>
@@ -49,6 +49,7 @@ return(<div style={{height:'100dvh',background:C.paper,display:'flex',flexDirect
 <div><div style={lbl}>Participantes</div><input style={inp} value={f.parts} onChange={e=>set('parts',e.target.value)} placeholder="Virgula"/></div>
 <div><div style={lbl}>Orcamento R$</div><input style={inp} type="number" value={f.budget} onChange={e=>set('budget',e.target.value)} placeholder="0,00"/></div>
 {err&&<div style={{color:C.terracotta,fontSize:13,fontWeight:600}}>{err}</div>}
+</div>
+<div style={{padding:'12px 20px',paddingBottom:'max(20px,env(safe-area-inset-bottom))',background:C.paper,borderTop:`1px solid ${C.divider}`,flexShrink:0}}>
 <button onClick={go} disabled={loading} style={{width:'100%',padding:'16px',borderRadius:16,background:C.terracotta,color:'#fff',border:'none',fontSize:16,fontWeight:700,cursor:'pointer'}}>{loading?'Criando...':'Criar viagem'}</button>
 </div></div>)}
-
