@@ -18,6 +18,10 @@ const[dates,setDates]=useState(trip.dates)
 const[cover,setCover]=useState(trip.cover)
 const[budget,setBudget]=useState(trip.budget||'')
 const[participants,setParticipants]=useState((trip.participants||['Você']).join(', '))
+const[dests,setDests]=useState(trip.destinations||[])
+const[destInput,setDestInput]=useState('')
+const addDest=()=>{if(!destInput.trim())return;setDests(p=>[...p,destInput.trim()]);setDestInput('')}
+const remDest=(i)=>setDests(p=>p.filter((_,x)=>x!==i))
 const[saving,setSaving]=useState(false)
 const[uploadingCover,setUploadingCover]=useState(false)
 const coverImg=trip.coverCustom||IMG[trip.cover]||IMG.cliffs
