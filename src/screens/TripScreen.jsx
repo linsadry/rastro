@@ -78,6 +78,18 @@ return(<div style={{height:'100vh',display:'flex',flexDirection:'column',backgro
 <div><div style={lbl}>Destino</div><input style={inp} value={location} onChange={e=>setLocation(e.target.value)}/></div>
 <div><div style={lbl}>Período</div><input style={inp} value={dates} onChange={e=>setDates(e.target.value)}/></div>
 <div><div style={lbl}>Participantes</div><input style={inp} value={participants} onChange={e=>setParticipants(e.target.value)} placeholder="Separe por vírgula"/></div>
+<div>
+<div style={lbl}>Paradas</div>
+<div style={{display:'flex',gap:8,marginBottom:8}}>
+<input style={{...inp,flex:1}} value={destInput} onChange={e=>setDestInput(e.target.value)} onKeyDown={e=>e.key==='Enter'&&addDest()} placeholder="Ex: Porto"/>
+<button onClick={addDest} style={{background:C.terracotta,border:'none',borderRadius:10,width:40,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center'}}><Icon name="plus" size={16} color="#fff"/></button>
+</div>
+{dests.length>0&&<div style={{display:'flex',flexWrap:'wrap',gap:6}}>
+{dests.map((d,i)=><div key={i} style={{background:C.sandPale,borderRadius:20,padding:'4px 10px',fontSize:12,color:C.olive,display:'flex',alignItems:'center',gap:4}}>
+{d}<button onClick={()=>remDest(i)} style={{background:'none',border:'none',cursor:'pointer',padding:0,display:'flex'}}><Icon name="x" size={10} color={C.textLight}/></button>
+</div>)}
+</div>}
+</div>
 <div><div style={lbl}>Orçamento R$</div><input style={inp} type="number" value={budget} onChange={e=>setBudget(e.target.value)}/></div>
 <button onClick={handleSave} disabled={saving} style={{padding:'12px',borderRadius:12,background:C.terracotta,color:'#fff',border:'none',fontWeight:700,cursor:'pointer'}}>{saving?'Salvando...':'Salvar alterações'}</button>
 </div>}
