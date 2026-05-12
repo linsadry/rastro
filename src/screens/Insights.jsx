@@ -132,15 +132,15 @@ export function Perfil({ trips }) {
 <div style={{background:'#fff',borderRadius:14,padding:'16px 20px',boxShadow:'0 1px 4px rgba(0,0,0,0.06)'}}>
 <div style={{fontSize:13,color:C.textMid,marginBottom:12,fontWeight:700}}>Destinos visitados</div>
 {Object.entries(destinations.reduce((acc,d)=>{
-const parts=d.split(',')
-const country=parts.length>1?parts[parts.length-1].trim():'Brasil'
-const city=parts[0].trim()
-if(!acc[country])acc[country]=[]
-if(!acc[country].includes(city))acc[country].push(city)
+const parts=d.split(',').map(p=>p.trim())
+const city=parts[0]
+const group=parts.length>=3?parts[1]:parts.length===2?parts[1]:city
+if(!acc[group])acc[group]=[]
+if(!acc[group].includes(city))acc[group].push(city)
 return acc
-},{})).map(([country,cities],i)=>(
+},{})).map(([group,cities],i)=>(
 <div key={i} style={{marginBottom:10}}>
-<div style={{fontSize:11,fontWeight:700,color:C.olive,marginBottom:6,letterSpacing:1,textTransform:'uppercase'}}>{country}</div>
+<div style={{fontSize:11,fontWeight:700,color:C.olive,marginBottom:6,letterSpacing:1,textTransform:'uppercase'}}>{group}</div>
 <div style={{display:'flex',flexWrap:'wrap',gap:6}}>
 {cities.map((city,j)=><div key={j} style={{background:C.sandPale,borderRadius:20,padding:'5px 12px',fontSize:12,color:C.textDark,fontWeight:600}}>{city}</div>)}
 </div>
