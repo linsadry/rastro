@@ -87,24 +87,21 @@ participants:data.participants||['Você'],
 if(error)throw error
 return trip}
 
-export async function updateTrip(id, data) {
-  const { error } = await sb.from('trips').update({
-    name: data.name,
-    location: data.location,
-    dates: data.dates,
-    date_start: data.dateStart || null,
-    date_end: data.dateEnd || null,
-    destinations: data.destinations||[],
-    cover: data.cover,
-    cover_custom: data.coverCustom || null,
-    budget: data.budget,
-    participants: data.participants,
-    date_start: data.dateStart||null,
-date_end: data.dateEnd||null,
-destinations: data.destinations||[],
-    map_img: data.mapImg || null,
-  }).eq('id', id)
-  if (error) throw error
+export async function updateTrip(id,data){
+const{error}=await sb.from('trips').update({
+name:data.name,
+location:data.location,
+dates:data.dates,
+date_start:data.dateStart||null,
+date_end:data.dateEnd||null,
+cover:data.cover,
+cover_custom:data.coverCustom||null,
+budget:data.budget,
+participants:data.participants,
+destinations:data.destinations||[],
+map_img:data.mapImg||null,
+}).eq('id',id)
+if(error)throw error}
 }
 
 export async function deleteTrip(id) {
