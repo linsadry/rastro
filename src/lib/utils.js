@@ -102,7 +102,6 @@ destinations:data.destinations||[],
 map_img:data.mapImg||null,
 }).eq('id',id)
 if(error)throw error}
-}
 
 export async function deleteTrip(id) {
   const { error } = await sb.from('trips').delete().eq('id', id)
