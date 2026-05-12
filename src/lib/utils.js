@@ -99,6 +99,9 @@ export async function updateTrip(id, data) {
     cover_custom: data.coverCustom || null,
     budget: data.budget,
     participants: data.participants,
+    date_start: data.dateStart||null,
+date_end: data.dateEnd||null,
+destinations: data.destinations||[],
     map_img: data.mapImg || null,
   }).eq('id', id)
   if (error) throw error
