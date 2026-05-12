@@ -94,6 +94,7 @@ export async function updateTrip(id, data) {
     dates: data.dates,
     date_start: data.dateStart || null,
     date_end: data.dateEnd || null,
+    destinations: data.destinations||[],
     cover: data.cover,
     cover_custom: data.coverCustom || null,
     budget: data.budget,
