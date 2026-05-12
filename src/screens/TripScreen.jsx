@@ -29,12 +29,19 @@ const handleDelete=async()=>{
 if(!window.confirm(`Excluir "${trip.name}"?`))return
 try{await deleteTrip(trip.id);showToast('Viagem excluída');onDeleted()}
 catch(e){showToast('Erro ao excluir')}}
-const handleSave=async()=>{
+  const handleSave=async()=>{
 setSaving(true)
 try{
-const fmt=d=>new Date(d+'T12:00:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'short'})
-const newDates=trip.dateStart&&trip.dateEnd?`${fmt(trip.dateStart)} - ${fmt(trip.dateEnd)}`:dates
-await updateTrip(trip.id,{name,location,dates:newDates,cover,coverCustom:trip.coverCustom||null,budget:parseFloat(budget)||0,participants:participants.split(',').map(p=>p.trim()).filter(Boolean),destinations:dests,mapImg:trip.mapImg||null,dateStart:trip.dateStart||null,dateEnd:trip.dateEnd||null})
+await updateTrip(trip.id,{
+name,location,dates,cover,
+coverCustom:trip.coverCustom||null,
+budget:parseFloat(budget)||0,
+participants:participants.split(',').map(p=>p.trim()).filter(Boolean),
+destinations:dests,
+mapImg:trip.mapImg||null,
+dateStart:trip.dateStart||null,
+dateEnd:trip.dateEnd||null,
+})
 await onRefresh();setEditing(false);showToast('Viagem salva!')
 }catch(e){showToast('Erro: '+e.message)}finally{setSaving(false)}}
 const uploadCover=async(e)=>{
