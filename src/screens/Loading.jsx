@@ -1,4 +1,3 @@
-cat > /home/claude/rastro/src/screens/Loading.jsx << 'ENDOFFILE'
 import IMG from '../lib/images'
 import{C}from'../lib/utils'
 export function Loading(){
