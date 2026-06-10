@@ -1,19 +1,15 @@
 import { useState, useEffect } from 'react'
 import { registerToast } from '../lib/utils'
 import { C } from '../lib/utils'
-
 export function Toast() {
   const [msg, setMsg] = useState(null)
-
   useEffect(() => {
     registerToast((m) => {
       setMsg(m)
       setTimeout(() => setMsg(null), 2500)
     })
   }, [])
-
   if (!msg) return null
-
   return (
     <div style={{
       position: 'fixed', bottom: 90, left: '50%', transform: 'translateX(-50%)',
