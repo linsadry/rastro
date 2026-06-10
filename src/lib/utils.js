@@ -20,12 +20,10 @@ export const C = {
   white: '#FFFFFF',
 }
 
-// Toast global
 let _setToast = null
 export const registerToast = (fn) => { _setToast = fn }
 export const showToast = (msg) => { if (_setToast) _setToast(msg) }
 
-// Trips
 export async function fetchAllTrips() {
   const { data: trips, error } = await sb
     .from('trips')
@@ -78,30 +76,26 @@ export async function fetchAllTrips() {
 }
 
 export async function createTrip(data){
-const{data:trip,error}=await sb.from('trips').insert({
-name:data.name,location:data.location,dates:data.dates,
-date_start:data.dateStart||null,date_end:data.dateEnd||null,
-cover:data.cover||'cliffs',budget:data.budget||0,
-participants:data.participants||['Você'],
-}).select().single()
-if(error)throw error
-return trip}
+  const{data:trip,error}=await sb.from('trips').insert({
+    name:data.name,location:data.location,dates:data.dates,
+    date_start:data.dateStart||null,date_end:data.dateEnd||null,
+    cover:data.cover||'cliffs',budget:data.budget||0,
+    participants:data.participants||['Você'],
+  }).select().single()
+  if(error)throw error
+  return trip
+}
 
 export async function updateTrip(id,data){
-const{error}=await sb.from('trips').update({
-name:data.name,
-location:data.location,
-dates:data.dates,
-date_start:data.dateStart||null,
-date_end:data.dateEnd||null,
-cover:data.cover,
-cover_custom:data.coverCustom||null,
-budget:data.budget,
-participants:data.participants,
-destinations:data.destinations||[],
-map_img:data.mapImg||null,
-}).eq('id',id)
-if(error)throw error}
+  const{error}=await sb.from('trips').update({
+    name:data.name,location:data.location,dates:data.dates,
+    date_start:data.dateStart||null,date_end:data.dateEnd||null,
+    cover:data.cover,cover_custom:data.coverCustom||null,
+    budget:data.budget,participants:data.participants,
+    destinations:data.destinations||[],map_img:data.mapImg||null,
+  }).eq('id',id)
+  if(error)throw error
+}
 
 export async function deleteTrip(id) {
   const { error } = await sb.from('trips').delete().eq('id', id)
@@ -109,13 +103,14 @@ export async function deleteTrip(id) {
 }
 
 export async function addExpense(tripId,data){
-const{data:exp,error}=await sb.from('expenses').insert({
-trip_id:tripId,description:data.description,amount:data.amount,
-category:data.category,payment:data.payment,paid_by:data.paidBy,
-with_whom:data.withWhom,date:data.date||null,note:data.note||null,
-}).select().single()
-if(error)throw error
-return exp}
+  const{data:exp,error}=await sb.from('expenses').insert({
+    trip_id:tripId,description:data.description,amount:data.amount,
+    category:data.category,payment:data.payment,paid_by:data.paidBy,
+    with_whom:data.withWhom,date:data.date||null,note:data.note||null,
+  }).select().single()
+  if(error)throw error
+  return exp
+}
 
 export async function deleteExpense(id) {
   const { error } = await sb.from('expenses').delete().eq('id', id)
@@ -124,12 +119,8 @@ export async function deleteExpense(id) {
 
 export async function addMapPoint(tripId, point) {
   const { data, error } = await sb.from('map_points').insert({
-    trip_id: tripId,
-    label: point.label,
-    x: point.x,
-    y: point.y,
-    date: point.date || null,
-    sort_order: point.sortOrder || 0,
+    trip_id: tripId, label: point.label, x: point.x, y: point.y,
+    date: point.date || null, sort_order: point.sortOrder || 0,
   }).select().single()
   if (error) throw error
   return data
@@ -140,12 +131,8 @@ export async function updateMapPoints(tripId, points) {
   if (points.length === 0) return
   const { error } = await sb.from('map_points').insert(
     points.map((p, i) => ({
-      trip_id: tripId,
-      label: p.label,
-      x: p.x,
-      y: p.y,
-      date: p.date || null,
-      sort_order: i,
+      trip_id: tripId, label: p.label, x: p.x, y: p.y,
+      date: p.date || null, sort_order: i,
     }))
   )
   if (error) throw error
@@ -153,9 +140,7 @@ export async function updateMapPoints(tripId, points) {
 
 export async function addMemory(tripId, src) {
   const { data, error } = await sb.from('memories').insert({
-    trip_id: tripId,
-    src,
-    sort_order: 0,
+    trip_id: tripId, src, sort_order: 0,
   }).select().single()
   if (error) throw error
   return data
