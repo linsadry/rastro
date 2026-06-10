@@ -1,9 +1,3 @@
-cat > /home/claude/rastro/src/screens/App.jsx << 'ENDOFFILE'
-// placeholder
-ENDOFFILE
-
-# Criar App.jsx principal
-cat > /home/claude/rastro/src/App.jsx << 'ENDOFFILE'
 import { useState, useEffect } from 'react'
 import { fetchAllTrips, C, showToast } from './lib/utils'
 import { Loading, Splash } from './screens/Loading'
