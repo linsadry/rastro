@@ -32,6 +32,19 @@
     #status { font-size:12px; color:#B0A090; text-align:center; max-width:300px; }
   </style>
 </head>
+  <script>
+window.addEventListener('unhandledrejection', function(e){
+  document.getElementById('splash-loading').innerHTML = 
+    '<p style="color:red;padding:20px;font-size:12px">' + 
+    'Promise error: ' + e.reason + '</p>';
+});
+setTimeout(function(){
+  var el = document.getElementById('splash-loading');
+  if(el && el.style.display !== 'none'){
+    el.innerHTML = '<p style="color:red;padding:20px;font-size:12px">Timeout - verifique console</p>';
+  }
+}, 8000);
+</script>
 <body>
   <div class="brand">
     <h1>Rastro</h1>
